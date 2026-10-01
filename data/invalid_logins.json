@@ -1,0 +1,65 @@
+[
+  {
+    "id": "wrong-password",
+    "case": "верный логин, неверный пароль",
+    "username": "standard_user",
+    "password": "wrong_password",
+    "error": "Epic sadface: Username and password do not match any user in this service"
+  },
+  {
+    "id": "unknown-user",
+    "case": "несуществующий пользователь",
+    "username": "unknown_user",
+    "password": "secret_sauce",
+    "error": "Epic sadface: Username and password do not match any user in this service"
+  },
+  {
+    "id": "locked-out-user",
+    "case": "заблокированный пользователь",
+    "username": "locked_out_user",
+    "password": "secret_sauce",
+    "error": "Epic sadface: Sorry, this user has been locked out."
+  },
+  {
+    "id": "empty-username",
+    "case": "пустой логин",
+    "username": "",
+    "password": "secret_sauce",
+    "error": "Epic sadface: Username is required"
+  },
+  {
+    "id": "empty-password",
+    "case": "пустой пароль",
+    "username": "standard_user",
+    "password": "",
+    "error": "Epic sadface: Password is required"
+  },
+  {
+    "id": "empty-form",
+    "case": "пустая форма — первой проверяется логин",
+    "username": "",
+    "password": "",
+    "error": "Epic sadface: Username is required"
+  },
+  {
+    "id": "username-in-upper-case",
+    "case": "логин в другом регистре",
+    "username": "STANDARD_USER",
+    "password": "secret_sauce",
+    "error": "Epic sadface: Username and password do not match any user in this service"
+  },
+  {
+    "id": "username-with-spaces",
+    "case": "пробелы вокруг логина не обрезаются",
+    "username": " standard_user ",
+    "password": "secret_sauce",
+    "error": "Epic sadface: Username and password do not match any user in this service"
+  },
+  {
+    "id": "sql-injection",
+    "case": "строка SQL-инъекции в обоих полях",
+    "username": "' OR '1'='1",
+    "password": "' OR '1'='1",
+    "error": "Epic sadface: Username and password do not match any user in this service"
+  }
+]

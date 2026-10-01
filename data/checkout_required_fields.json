@@ -1,0 +1,26 @@
+[
+  {
+    "id": "no-first-name",
+    "case": "не заполнено имя",
+    "first_name": "",
+    "last_name": "Петрова",
+    "postal_code": "101000",
+    "error": "Error: First Name is required"
+  },
+  {
+    "id": "no-last-name",
+    "case": "не заполнена фамилия",
+    "first_name": "Анна",
+    "last_name": "",
+    "postal_code": "101000",
+    "error": "Error: Last Name is required"
+  },
+  {
+    "id": "no-postal-code",
+    "case": "не заполнен индекс",
+    "first_name": "Анна",
+    "last_name": "Петрова",
+    "postal_code": "",
+    "error": "Error: Postal Code is required"
+  }
+]

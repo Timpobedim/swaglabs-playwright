@@ -1,0 +1,6 @@
+username,role
+standard_user,обычный покупатель
+problem_user,покупатель с дефектами интерфейса
+performance_glitch_user,покупатель с медленным входом
+error_user,покупатель с ошибками при действиях
+visual_user,покупатель с визуальными дефектами

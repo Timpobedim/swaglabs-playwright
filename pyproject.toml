@@ -1,0 +1,65 @@
+[project]
+name = "swaglabs-playwright"
+version = "1.0.0"
+description = "UI-автотесты интернет-магазина Swag Labs: Playwright + pytest, Page Object, data-driven"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "playwright>=1.55",
+    "pytest>=8.4",
+    "pytest-playwright>=0.7",
+    "pytest-html>=4.1",
+    "pytest-xdist>=3.8",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.12",
+    "mypy>=1.17",
+]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = [
+    # Адрес стенда передаётся опцией, а не ini-ключом base_url: ini-значение pytest-base-url
+    # читает только в главном процессе, и воркеры pytest-xdist его не получают.
+    # Другой стенд: pytest --base-url=https://staging.example.com
+    "--base-url=https://www.saucedemo.com",
+    "--browser=chromium",
+    "--screenshot=only-on-failure",
+    "--tracing=retain-on-failure",
+    "--output=test-results",
+    "--html=reports/report.html",
+    "--self-contained-html",
+]
+markers = [
+    "smoke: ключевые сценарии для быстрого прогона",
+    "known_defect(bug_id, summary): тест фиксирует известный дефект, см. docs/bug-reports",
+]
+xfail_strict = true
+
+[tool.ruff]
+line-length = 110
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "S", "C4", "SIM", "PT", "RUF"]
+# RUF001-003: в русских строках есть кириллица, похожая на латиницу, — это нормально.
+ignore = ["RUF001", "RUF002", "RUF003"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101"]
+# Пароль демо-магазина общий и напечатан на его странице входа — это не секрет.
+"helpers/users.py" = ["S105"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["pages", "helpers"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+files = ["pages", "helpers"]
